@@ -2,16 +2,93 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux'
+import {BrowserRouter} from 'react-router-dom'
+
+let goalInitialState ={
+  goals:[]
+}
+
+let goalReducer = (state = goalInitialState,action) =>{
+  switch (action.type) {
+    case "SET_ALL_GOALS":
+      let goalsArray = action.payload
+      return {
+        ...state,
+        goals: goalsArray
+      }
+    case "REMOVE_GOAL":
+      let goalName = action.payload
+      let filteredGoals = state.goals.filter((goal)=>{
+        return goal.name !== goalName
+       })
+        return {
+          ...state,
+           goals:filteredGoals
+         }
+    case "ADD_ONE_GOAL":
+      let newGoal = action.payload
+      let copyGoals = [...state.goals,newGoal]
+        return{
+          ...state,
+          goals:copyGoals
+        }
+        
+    default:
+      return state
+  }
+}
+
+let userInitialState ={
+  id: 0,
+  token:"",
+  username:""
+}
+
+let userReducer = (state = userInitialState,action) =>{
+  switch(action.type){
+    case "SET_USER_INFO":
+      return {
+        ...state,
+        id: action.payload.user.id,
+        username: action.payload.user.username,
+        token: action.payload.token
+      }
+    case "LOG_USER_OUT":
+      return {
+        ...state,
+        id: action.payload.user.id,
+        username: action.payload.user.username,
+        token: action.payload.token
+      }
+    default:
+      return state
+  }
+}
+
+
+let rootReducer = combineReducers({
+  goalInfo: goalReducer,
+  userInfo: userReducer
+})
+
+let storeObj = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={storeObj}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+
+
+
+
+
