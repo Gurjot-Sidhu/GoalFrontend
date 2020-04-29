@@ -5,26 +5,33 @@ import GoalForm from './Components/GoalForm.jsx';
 import UserForm from './Components/UserForm.jsx'
 import Navbar from './Components/Navbar.jsx';
 
-import {Switch,Route,withRouter,Redirect} from 'react-router-dom'
+import {Switch,Route,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-
+import GoalPage from './Containers/GoalPage';
 
 
 class App extends React.Component{
 
 
-
   componentDidMount(){
-    fetch("http://localhost:3000/goals")
-      .then(r => r.json())
-      .then((arrayofGoals) =>{
-        this.props.setAllGoals(arrayofGoals)
-      })
-      
     if(localStorage.token){
       this.persistUser()
     }
   }
+
+  persistUser = () =>{
+      fetch("http://localhost:3000/persist",{
+        method: "POST",
+        headers: {
+          "Authorization": `bearer ${localStorage.token}`
+        }
+      })
+      .then(r => r.json())
+      .then(r =>{
+          this.handleResponse(r)
+      })
+    }
+ 
 
   handleLoginSubmit = (userInfo)=>{
     fetch("http://localhost:3000/login",{
@@ -54,9 +61,10 @@ class App extends React.Component{
 
   handleResponse = (response) =>{
     if (!response.message){
-      console.log(response)
       localStorage.token = response.token
       this.props.setUserInfo(response)
+      this.props.setAllGoals(response.user.goals)
+      this.props.history.push("/profile")
     }
     else{
       alert(response.message)
@@ -70,24 +78,12 @@ class App extends React.Component{
       token:"",
       username:""}
       )
+      clearGoals()
+      this.props.history.push("/login")
   }
 
 
-  persistUser = () =>{
-    return(dispatch) =>{
-      fetch("http://localhost:3000/persist",{
-        method: "POST",
-        headers: {
-          "Authoriztion": `bearer ${localStorage.token}`
-        }
-      })
-      .then(r => r.json())
-      .then(r =>{
-        localStorage.token = r.token
-        dispatch(setUserInfo(r))
-      })
-    }
-  }
+  
 
   renderForm = (routerProps) =>{
     if(routerProps.location.pathname === "/login"){
@@ -108,14 +104,17 @@ class App extends React.Component{
           <Switch>
               <Route path="/login" render={this.renderForm}/>
               <Route path="/signup" render={this.renderForm}/>
+              <Route path="/goals/:id" component={GoalPage} />
               <Route path="/profile" render={() =>{
-                return (
-                  <div>
-                    <GoalForm/>
-                    <GoalContainer/>
-                  </div>
-                  )
+                if(localStorage.token){
+                  return (
+                    <div>
+                      <GoalForm history={this.props.history}/>
+                      <GoalContainer/>
+                    </div>
+                    )}
                 }}/>
+              
           </Switch>
       </div>
     )
@@ -129,6 +128,11 @@ let clearUserInfo = (userInfo) =>{
   }
 }
 
+  let clearGoals = () =>{
+    return{
+      type:"REMOVE_ALL_GOALS"
+    }
+  }
 
   let setAllGoals = (allGoals) =>{
     return {

@@ -17,8 +17,7 @@ export class Milestone extends Component {
     render() {
         return (
             <div className="milestone">
-                <h2>Milestone</h2>
-                {this.props.milestone.name}
+                <h2>{this.props.milestone.name}</h2>
                 <input 
                     type="checkbox"
                     name="complete"

@@ -1,44 +1,45 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-export class GoalForm extends Component {
-
+export class MilestoneForm extends Component {
+    
     state={
         name:"",
-        complete: null
+        complete:null
     }
-
-
+    
     handleInputs = (e) =>{
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+    
 
     handleSubmit = (e) =>{
         e.preventDefault()
 
-        fetch("http://localhost:3000/goals",{
+        fetch("http://localhost:3000/milestones",{
             method:"POST",
-            headers: {
-                'Authorization': `bearer ${localStorage.token}`,
+            headers:{
+                'Authorization': ` bearer ${localStorage.token}`,
                 'Content-Type': 'Application/JSON'
             },
             body: JSON.stringify(this.state)
         })
             .then(r => r.json())
-            .then((newGoal) =>{
-                if(newGoal.id){
-                    this.props.addOneGoal(newGoal)
-                    this.props.history.push(`/goals/${newGoal.id}`)
+            .then((newMilestone)=>{
+                if(newMilestone.id){
+                    this.props.addOneMilestone(newMilestone)
                 }
-            }
-            )
+            })
     }
+
 
     render() {
         return (
-            <form className="NewGoalForm" onSubmit={this.handleSubmit}>
+            <div className="MilestoneForm">
+                <h1>Create a new milestone</h1>
+                <form className="NewGoalForm" onSubmit={this.handleSubmit}>
                 <label>Name</label>
                 <input
                 type="text"
@@ -60,19 +61,21 @@ export class GoalForm extends Component {
                 />
                 <input type="submit" value="Submit" />
             </form>
+            </div>
         )
     }
 }
 
-let addOneGoal = (newGoal) =>{
+
+let addOneMilestone = (newMilestone) =>{
     return{
-        type:"ADD_ONE_GOAL",
-        payload:newGoal
+        type:"ADD_ONE_MILESTONE",
+        payload:newMilestone
     }
 }
 
 let mstp = {
-    addOneGoal: addOneGoal
+    addOneMilestone: addOneMilestone
 }
 
-export default connect(null,mstp)(GoalForm)
+export default connect(null,mstp)(MilestoneForm)

@@ -35,7 +35,11 @@ let goalReducer = (state = goalInitialState,action) =>{
           ...state,
           goals:copyGoals
         }
-        
+    case "REMOVE_ALL_GOALS":
+        return{
+          ...state,
+          goals:[]
+        }
     default:
       return state
   }
@@ -59,9 +63,9 @@ let userReducer = (state = userInitialState,action) =>{
     case "LOG_USER_OUT":
       return {
         ...state,
-        id: action.payload.user.id,
-        username: action.payload.user.username,
-        token: action.payload.token
+        id:0,
+        token:"",
+        username:""
       }
     default:
       return state
