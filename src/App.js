@@ -13,6 +13,10 @@ import GoalPage from './Containers/GoalPage';
 class App extends React.Component{
 
 
+  state={
+    login:false
+  }
+
   componentDidMount(){
     if(localStorage.token){
       this.persistUser()
@@ -61,9 +65,24 @@ class App extends React.Component{
 
   handleResponse = (response) =>{
     if (!response.message){
+      this.setState({
+        login:true
+      })
+      let newmiles = []
+      let milestones= response.user.goals.map((singleGoal)=>{
+        if(singleGoal.milestones){
+          singleGoal.milestones.map((oneMile)=>{
+            newmiles.push(oneMile)
+          })
+        }else{
+          return null
+        }
+      return newmiles
+      })
       localStorage.token = response.token
       this.props.setUserInfo(response)
       this.props.setAllGoals(response.user.goals)
+      this.props.setAllMilestones(newmiles)
       this.props.history.push("/profile")
     }
     else{
@@ -80,6 +99,9 @@ class App extends React.Component{
       )
       clearGoals()
       this.props.history.push("/login")
+      this.setState({
+        login:false
+      })
   }
 
 
@@ -99,8 +121,8 @@ class App extends React.Component{
     return(
       <div className="App">
           <h1>Welcome</h1>
-          <Navbar/>
-          {<button onClick={this.handleLogout}>Logout</button>}
+          <Navbar handleLogout={this.handleLogout} login={this.state.login}/>
+          {/* {<button onClick={this.handleLogout}>Logout</button>} */}
           <Switch>
               <Route path="/login" render={this.renderForm}/>
               <Route path="/signup" render={this.renderForm}/>
@@ -148,6 +170,13 @@ let clearUserInfo = (userInfo) =>{
     }
   }
 
-let sendInfo = {setAllGoals,setUserInfo,clearUserInfo}
+  let setAllMilestones = (allMilestones) =>{
+    return{
+      type:"SET_ALL_MILESTONES",
+      payload: allMilestones
+    }
+  }
+
+let sendInfo = {setAllGoals,setUserInfo,clearUserInfo,setAllMilestones,clearGoals}
 
 export default withRouter(connect(null,sendInfo)(App));

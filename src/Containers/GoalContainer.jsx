@@ -4,9 +4,9 @@ import Goal from '../Components/Goal.jsx'
 
 
 const GoalContainer = (props) =>{
-    
-     let arrayofComponents = props.goals.map((singleGoal)=>{
-        return <Goal key={singleGoal.name} goal={singleGoal} />
+        // console.log(props)
+        let arrayofComponents = props.goals.map((singleGoal)=>{
+        return <Goal key={singleGoal.name} goal={singleGoal} milestones={props.milestones}/>
      })
     return (
         <div className="GoalContainer">
@@ -17,7 +17,8 @@ const GoalContainer = (props) =>{
     }
     const mstp = (reduxState) =>{
         return {
-            goals: reduxState.goalInfo.goals
+            goals: reduxState.goalInfo.goals,
+            milestones: reduxState.milestoneInfo.milestones
         }
     }
 

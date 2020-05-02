@@ -7,6 +7,31 @@ import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 
+
+
+let milestoneInitialState ={
+  milestones:[]
+}
+
+let milestoneReducer = (state = milestoneInitialState,action) =>{
+  switch (action.type) {
+    case "SET_ALL_MILESTONES":
+      let milestoneArray = action.payload
+      return{
+        ...state,
+        milestones: milestoneArray
+      }
+    case "ADD_ONE_MILESTONE":
+      let newArr = [...state.milestones,action.payload]
+      return{
+        ...state,
+        milestones: newArr
+      }
+    default:
+      return state
+  }
+}
+
 let goalInitialState ={
   goals:[]
 }
@@ -40,6 +65,28 @@ let goalReducer = (state = goalInitialState,action) =>{
           ...state,
           goals:[]
         }
+    // case "ADD_ONE_MILESTONE":
+    //   let goalId = action.payload.goal_id
+    //   let foundGoal = state.goals.filter((singleGoal)=>{
+    //     if(singleGoal.id === goalId){
+    //       console.log(foundGoal)
+    //       return singleGoal
+    //     }else{
+    //       return null
+    //     }
+    //   })
+    //   let newmiles = [foundGoal.milestones,action.payload]
+    //   let newstate = state.goals.map((singleGoal)=>{
+    //     if(singleGoal.id === goalId){
+    //       return newmiles
+    //     }else{
+    //       return singleGoal
+    //     }
+    //   })
+    //   return{
+    //     ...state,
+    //     goals: newstate
+    //   }
     default:
       return state
   }
@@ -74,6 +121,7 @@ let userReducer = (state = userInitialState,action) =>{
 
 
 let rootReducer = combineReducers({
+  milestoneInfo: milestoneReducer,
   goalInfo: goalReducer,
   userInfo: userReducer
 })

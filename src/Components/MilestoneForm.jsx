@@ -5,7 +5,8 @@ export class MilestoneForm extends Component {
     
     state={
         name:"",
-        complete:null
+        complete:null,
+        goal_id: this.props.id
     }
     
     handleInputs = (e) =>{
@@ -42,22 +43,27 @@ export class MilestoneForm extends Component {
                 <form className="NewGoalForm" onSubmit={this.handleSubmit}>
                 <label>Name</label>
                 <input
-                type="text"
-                name="name"
-                onChange={this.handleInputs}
+                    type="text"
+                    name="name"
+                    onChange={this.handleInputs}
                 />
                 <label>Completed?</label>
                 <input 
-                type="radio"
-                name="complete"
-                value="true"
-                onChange={this.handleInputs}
+                    type="radio"
+                    name="complete"
+                    value="true"
+                    onChange={this.handleInputs}
                 />
                 <input
-                type="radio"
-                name="complete"
-                value="false"
-                onChange={this.handleInputs}
+                    type="radio"
+                    name="complete"
+                    value="false"
+                    onChange={this.handleInputs}
+                />
+                <input 
+                    type="hidden" 
+                    name="goal_id"
+                    value={this.props.id}
                 />
                 <input type="submit" value="Submit" />
             </form>

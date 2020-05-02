@@ -8,10 +8,10 @@ export class Milestone extends Component {
     }
 
     handleClick = (e) =>{
-        this.setState({
-            display: !this.state.display
-        })
-        this.props.updateMilestone(this.props.milestone.name)
+        this.setState(prevState =>({
+            display: !prevState.display
+        }))
+        this.updateMilestone(this.props.milestone.name)
     }
 
     render() {
@@ -22,8 +22,8 @@ export class Milestone extends Component {
                     type="checkbox"
                     name="complete"
                     value={this.props.milestone.complete}
-                    onClick={this.handleClick}
-                    checked={this.state.display}
+                    // onClick={this.handleClick}
+                    // checked={this.state.display}
                 />
             </div>
         )
