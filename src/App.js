@@ -9,6 +9,7 @@ import {Switch,Route,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import GoalPage from './Containers/GoalPage';
 
+import 'primereact/resources/themes/nova-light/theme.css'
 
 class App extends React.Component{
 
@@ -122,7 +123,6 @@ class App extends React.Component{
       <div className="App">
           <h1>Welcome</h1>
           <Navbar handleLogout={this.handleLogout} login={this.state.login}/>
-          {/* {<button onClick={this.handleLogout}>Logout</button>} */}
           <Switch>
               <Route path="/login" render={this.renderForm}/>
               <Route path="/signup" render={this.renderForm}/>
@@ -132,7 +132,7 @@ class App extends React.Component{
                   return (
                     <div>
                       <GoalForm history={this.props.history}/>
-                      <GoalContainer/>
+                      <GoalContainer />
                     </div>
                     )}
                 }}/>

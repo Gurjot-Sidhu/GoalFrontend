@@ -27,6 +27,18 @@ let milestoneReducer = (state = milestoneInitialState,action) =>{
         ...state,
         milestones: newArr
       }
+    case "DELETE_MILESTONE":
+      let newmiles = state.milestones.filter((singleMilestone)=>{
+        if(singleMilestone.id === action.payload.id){
+          return null
+        }else{
+          return singleMilestone
+        }
+      })
+        return{
+          ...state,
+          milestones: newmiles
+        }
     default:
       return state
   }

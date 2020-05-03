@@ -46,12 +46,14 @@ export class GoalForm extends Component {
                 onChange={this.handleInputs}
                 />
                 <label>Completed?</label>
+                <label>True</label>
                 <input 
                 type="radio"
                 name="complete"
                 value="true"
                 onChange={this.handleInputs}
                 />
+                <label>False</label>
                 <input
                 type="radio"
                 name="complete"
