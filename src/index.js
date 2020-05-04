@@ -7,7 +7,26 @@ import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 
+import 'primereact/resources/themes/nova-light/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
 
+let exploreInitialState ={
+  goals:[]
+}
+
+let exploreReducer = (state = exploreInitialState,action) =>{
+  switch(action.type){
+    case "SET_ALL":
+      let exploreArray = action.payload
+      return{
+        ...state,
+        goals: exploreArray
+      }
+    default:
+      return state
+  }
+}
 
 let milestoneInitialState ={
   milestones:[]
@@ -35,10 +54,32 @@ let milestoneReducer = (state = milestoneInitialState,action) =>{
           return singleMilestone
         }
       })
-        return{
-          ...state,
-          milestones: newmiles
+      return{
+        ...state,
+        milestones: newmiles
+      }
+    case "UPDATE_MILESTONE":
+      let elementIndex = state.milestones.findIndex(element => element.id === action.payload.id)
+      let newCopy = [...state.milestones]
+      newCopy[elementIndex] = {...newCopy[elementIndex],complete:!newCopy[elementIndex].complete}
+      console.log(newCopy)
+      return{
+        ...state,
+        milestones: newCopy
+      }
+
+    case "COMPLETE_GOAL_MILES":
+      let foundmiles = state.milestones.map((singleMilestone)=>{
+        if(singleMilestone.goal_id === action.payload.id){
+          return {...singleMilestone,complete:action.payload.complete}
+        }else{
+          return singleMilestone
         }
+      })
+      return{
+        ...state,
+        milestones:foundmiles
+      }
     default:
       return state
   }
@@ -77,28 +118,20 @@ let goalReducer = (state = goalInitialState,action) =>{
           ...state,
           goals:[]
         }
-    // case "ADD_ONE_MILESTONE":
-    //   let goalId = action.payload.goal_id
-    //   let foundGoal = state.goals.filter((singleGoal)=>{
-    //     if(singleGoal.id === goalId){
-    //       console.log(foundGoal)
-    //       return singleGoal
-    //     }else{
-    //       return null
-    //     }
-    //   })
-    //   let newmiles = [foundGoal.milestones,action.payload]
-    //   let newstate = state.goals.map((singleGoal)=>{
-    //     if(singleGoal.id === goalId){
-    //       return newmiles
-    //     }else{
-    //       return singleGoal
-    //     }
-    //   })
-    //   return{
-    //     ...state,
-    //     goals: newstate
-    //   }
+    case "COMPLETE_GOAL":
+      let elementIndex = state.goals.findIndex(element => element.id === action.payload.id)
+      let newCopy = [...state.goals]
+      newCopy[elementIndex] = {...newCopy[elementIndex],complete:!newCopy[elementIndex].complete}
+
+      let newmiles = newCopy[elementIndex].milestones.map((singleMilestone)=>{
+        return {...singleMilestone, complete: true}
+      })
+      console.log(newmiles)
+      console.log(newCopy)
+      return{
+        ...state,
+        goals: newCopy
+      }
     default:
       return state
   }
@@ -133,6 +166,7 @@ let userReducer = (state = userInitialState,action) =>{
 
 
 let rootReducer = combineReducers({
+  exploreInfo: exploreReducer,
   milestoneInfo: milestoneReducer,
   goalInfo: goalReducer,
   userInfo: userReducer

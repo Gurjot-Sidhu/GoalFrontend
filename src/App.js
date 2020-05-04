@@ -9,8 +9,6 @@ import {Switch,Route,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import GoalPage from './Containers/GoalPage';
 
-import 'primereact/resources/themes/nova-light/theme.css'
-
 class App extends React.Component{
 
 
@@ -19,6 +17,15 @@ class App extends React.Component{
   }
 
   componentDidMount(){
+
+    fetch("http://localhost:3000/goals",{
+      method: "GET",
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(r => r.json())
+      .then(this.props.setAllExplore)
     if(localStorage.token){
       this.persistUser()
     }
@@ -143,6 +150,14 @@ class App extends React.Component{
   }
 }
 
+let setAllExplore = (exploreInfo) =>{
+  return{
+    type: "SET_ALL",
+    payload: exploreInfo
+  }
+}
+
+
 let clearUserInfo = (userInfo) =>{
   return{
     type:"LOG_USER_OUT",
@@ -177,6 +192,6 @@ let clearUserInfo = (userInfo) =>{
     }
   }
 
-let sendInfo = {setAllGoals,setUserInfo,clearUserInfo,setAllMilestones,clearGoals}
+let sendInfo = {setAllExplore,setAllGoals,setUserInfo,clearUserInfo,setAllMilestones,clearGoals}
 
 export default withRouter(connect(null,sendInfo)(App));

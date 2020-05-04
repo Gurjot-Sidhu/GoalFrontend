@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import Milestone from './Milestone.jsx'
 import {withRouter} from 'react-router-dom'
+import {ProgressBar} from 'primereact/progressbar';
+
+
 
 const Goal = (props) =>{
     let arrayofMilestones
-    if(props.milestones){
-    // console.log(props)
+    if(props.milestones.length > 0){
     arrayofMilestones = props.milestones.map((singleMilestone)=>{
         if(props.goal.id === singleMilestone.goal_id){
+            console.log(singleMilestone)
             return <Milestone key ={singleMilestone.id} milestone={singleMilestone}/>
         }else{
             return null
@@ -20,41 +23,103 @@ const Goal = (props) =>{
         props.history.push(`/goals/${props.goal.id}`)
     }
 
+    let getPercentage = () => {
+        console.log(arrayofMilestones)
+        return 90
+    }
+
     let handleClick = (e) =>{
-        props.removeGoal(props.goal.name)
+        e.preventDefault()
+        props.history.push("/profile")
+        fetch(`http://localhost:3000/goals/${props.goal.id}`,{
+            method:"DELETE",
+            headers:{
+                "Authorization": `bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(props.goal)
+        })
+            .then(r => r.json())
+            .then((r) =>{
+                if(r.message){
+                    props.removeGoal(props.goal.name)
+                }
+            })
     }
        
+    let handleUpdate = (e) =>{
+        e.preventDefault()
+        fetch(`http://localhost:3000/goals/${props.goal.id}`,{
+            method:"PATCH",
+            headers:{
+                "Authorization": `bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(props.goal)
+        })
+            .then(r => r.json())
+            .then((r)=>{
+                if(r.id){
+                    props.completeGoal(r)
+                    props.completeMiles(r)
+                }
+            })
+    }
         return (
             <div className="Goal" >
                 <h1>{props.goal.name}</h1>
-                {props.location.pathname= "/profile"
+                {window.location.href.includes("/profile")
                 ?<button onClick={handleView}>View</button>
-                :<></>
+                :   <>
+                    <input 
+                        type="checkbox"
+                        name="complete"
+                        checked={props.goal.complete}
+                        onChange={handleUpdate}
+                       
+                    />
+                        <button onClick={handleClick}>Delete this goal</button>
+                    </>
                 }
-                {props.goal.complete}
-                {arrayofMilestones}
-                <button onClick={handleClick}>Delete this goal</button>
-                <progress></progress>
+                
+                {window.location.href.includes("/profile") 
+                ? <></>
+                : arrayofMilestones
+                }
+                <ProgressBar 
+                mode="determinate"
+                value={getPercentage()}
+                >
+                </ProgressBar>
             </div>
         )
     
 }
 
-    const removeGoal = (goalName) =>{
+    const removeGoal = (goal) =>{
         return{
             type:"REMOVE_GOAL",
-            payload: goalName
+            payload: goal
         }
     }
-    // const completeGoal = (goalName) =>{
-    //     return{
-    //         type:"COMPLETE_GOAL",
-    //         payload: goalName
-    //     }
-    // }
+    const completeGoal = (goal) =>{
+        return{
+            type:"COMPLETE_GOAL",
+            payload: goal
+        }
+    }
+
+    const completeMiles = (goal) =>{
+        return{
+            type: "COMPLETE_GOAL_MILES",
+            payload: goal
+        }
+    }
 
     const mstp = {
-        removeGoal: removeGoal
+        removeGoal: removeGoal,
+        completeGoal: completeGoal,
+        completeMiles: completeMiles
     }
 
 export default withRouter(connect(null,mstp)(Goal))

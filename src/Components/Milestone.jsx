@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { MilestoneForm } from './MilestoneForm'
+// import { MilestoneForm } from './MilestoneForm'
 
 export class Milestone extends Component {
     
@@ -18,8 +18,7 @@ export class Milestone extends Component {
 
     handleDelete = (e) =>{
         e.preventDefault()
-        console.log(this.props.milestone)
-        fetch("http://localhost:3000/milestones",{
+        fetch(`http://localhost:3000/milestones/${this.props.milestone.id}`,{
             method:"DELETE",
             headers:{
                 'Authorization': `bearer ${localStorage.token}`,
@@ -28,58 +27,55 @@ export class Milestone extends Component {
             body: JSON.stringify(this.props.milestone)
         })
             .then(r => r.json())
-            .then(console.log)
+            .then((r)=>{
+                if(r.message){
+                    this.props.deleteMilestone(this.props.milestone)
+                }
+            })
 
     }
-        // fetch("http://localhost:3000/milestones",{
-        //     method:"DELETE",
-        //     headers:{
-        //         'Authorization': ` bearer ${localStorage.token}`,
-        //         'Content-Type': 'Application/JSON'
-        //     },
-        //     body: JSON.stringify(this.props.milestone)
-        // })
-        //     .then(r => r.json())
-        //     .then((r)=>{
-        //         if(r){
-        //             console.log(r)
-        //             this.props.deleteMilestone(this.props.milestone)
-        //         }
-        //     })
-            // .then((newMilestone)=>{
-            //     if(newMilestone.id){
-            //         this.props.addOneMilestone(newMilestone)
-            //     }
-            // })
     
+
+    handleUpdate = (e) =>{
+        e.preventDefault()
+        console.log(this.props.milestone)
+        fetch(`http://localhost:3000/milestones/${this.props.milestone.id}`,{
+            method:"PATCH",
+            headers:{
+                'Authorization': `bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.props.milestone)
+        })
+        .then(r => r.json())
+        .then(this.props.updateMilestone)
+    }
+
 
     render() {
         return (
             <div className="milestone">
                 <h2>{this.props.milestone.name}</h2>
-                <input 
+                 <input 
                     type="checkbox"
                     name="complete"
-                    value={this.props.milestone.complete}
-                    // onClick={this.handleClick}
-                    // checked={this.state.display}
-                />
+                    checked={this.props.milestone.complete}
+                    onChange={this.handleUpdate}
+                 />
+             
                 <button onClick={this.handleDelete}>Delete this </button>
             </div>
         )
     }
 }
-    // updateMilestone = (milestoneName) =>{
-    //     return{
-    //         type:"UPDATE_MILESTONE",
-    //         payload: milestoneName
-    //     }
-    // }
+   const updateMilestone = (milestone) =>{
+        return{
+            type:"UPDATE_MILESTONE",
+            payload: milestone
+        }
+    }
 
-    // const mstp = {
-    //     updateMilestone: updateMilestone
-    // }
-
+    
     const deleteMilestone = (milestone) =>{
         return{
             type: "DELETE_MILESTONE",
@@ -88,7 +84,8 @@ export class Milestone extends Component {
     }
 
     const mstp ={
-        deleteMilestone: deleteMilestone
+        deleteMilestone: deleteMilestone,
+        updateMilestone: updateMilestone
     }
 
 export default connect(null,mstp)(Milestone)
