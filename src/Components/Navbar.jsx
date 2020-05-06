@@ -4,28 +4,30 @@ import { NavLink } from 'react-router-dom';
 const Navbar = (props) => {
     
     return (
-      <ul className="Navbar">
-          <li>
-              <NavLink to="/">Home</NavLink>
-          </li>
-            {props.login 
-            ?  
-            <li onClick={props.handleLogout}>
-                <NavLink to="/login">Logout</NavLink>
-                </li>
-            :
-            <li>
-                <NavLink to="/login">Login</NavLink>
-            </li>
-            }
-         
-          <li>
-              <NavLink to="/signup">Register</NavLink>
-          </li>
-          <li>
-              <NavLink to="/profile">Profile</NavLink>
-          </li>
-      </ul>
+        <div class ="ui secondary pointing menu">
+                <a className="item">
+                    <NavLink to="/">Home</NavLink>
+                </a>
+                <a className="item">
+                    <NavLink to="/profile">Profile</NavLink>
+                </a>
+                <div className="right menu">
+                {props.login 
+                    ?<a className="ui item" onClick={props.handleLogout}>
+                        <NavLink to="/login">Logout</NavLink>                       
+                    </a>
+                    :
+                    <>
+                        <a className="ui item">
+                            <NavLink to="/signup">Register</NavLink>
+                        </a>
+                        <a className="ui item">
+                            <NavLink to="/login">Login</NavLink>
+                        </a>
+                    </>
+                    }
+                </div>
+      </div>
     )
     
 };

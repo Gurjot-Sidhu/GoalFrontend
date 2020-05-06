@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {InputText} from 'primereact/inputtext'
 export class UserForm extends Component {
 
     state={
@@ -22,15 +22,16 @@ export class UserForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
             <h1>{this.props.formName}</h1>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Username</label>
                 <input 
                     type="text" 
                     autoComplete="off" 
                     name="username" 
+                    tooltip="Enter your username"
                     value={this.state.username} 
                     onChange={this.handleChange}
                 />
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
                     autoComplete="off" 

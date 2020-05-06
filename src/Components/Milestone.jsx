@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-// import { MilestoneForm } from './MilestoneForm'
+import { Button } from 'primereact/button'
+import {TriStateCheckbox} from 'primereact/tristatecheckbox'
+
 
 export class Milestone extends Component {
     
@@ -55,15 +57,24 @@ export class Milestone extends Component {
     render() {
         return (
             <div className="milestone">
-                <h2>{this.props.milestone.name}</h2>
-                 <input 
-                    type="checkbox"
-                    name="complete"
-                    checked={this.props.milestone.complete}
-                    onChange={this.handleUpdate}
-                 />
-             
-                <button onClick={this.handleDelete}>Delete this </button>
+                <TriStateCheckbox 
+                            type="checkbox"
+                            name="complete"
+                            value={this.props.milestone.complete}
+                            onChange={this.handleUpdate}
+                />
+                <label className="Milestonename">
+                    {this.props.milestone.name}
+                </label>
+              
+                <div className="milebuttons">
+                  
+                        <Button 
+                            label="Delete Milestone" 
+                            onClick={this.handleDelete} 
+                            className="p-button-raised p-button-danger">
+                        </Button>
+                </div>
             </div>
         )
     }

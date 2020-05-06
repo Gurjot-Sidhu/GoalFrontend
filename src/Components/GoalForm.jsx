@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {InputText} from 'primereact/inputtext'
+import {RadioButton} from 'primereact/radiobutton'
+import {Button} from 'primereact/button'
 
 export class GoalForm extends Component {
 
@@ -7,7 +10,6 @@ export class GoalForm extends Component {
         name:"",
         complete: null
     }
-
 
     handleInputs = (e) =>{
         this.setState({
@@ -31,36 +33,49 @@ export class GoalForm extends Component {
                 if(newGoal.id){
                     this.props.addOneGoal(newGoal)
                     this.props.history.push(`/goals/${newGoal.id}`)
+                    this.setState({
+                        name:"",
+                        complete: null
+                    })
                 }
             }
+           
             )
     }
 
     render() {
         return (
-            <form className="NewGoalForm" onSubmit={this.handleSubmit}>
-                <label>Name</label>
-                <input
-                type="text"
-                name="name"
-                onChange={this.handleInputs}
-                />
+            <form className="GoalForm" onSubmit={this.handleSubmit}>
+            <img src="https://smartcaresoftware.com/wp-content/uploads/2019/11/SMART-goals-1536x792.jpg"/>
+                <span className="Goalname">
+                    <h3 className="first">Name of Goal</h3>
+                    <InputText
+                        id="in"
+                        name="name"
+                        onChange={this.handleInputs}
+                    />
+                </span>
+                
+                <div className="p-col-12">
                 <label>Completed?</label>
-                <label>True</label>
-                <input 
-                type="radio"
-                name="complete"
-                value="true"
-                onChange={this.handleInputs}
-                />
-                <label>False</label>
-                <input
-                type="radio"
-                name="complete"
-                value="false"
-                onChange={this.handleInputs}
-                />
-                <input type="submit" value="Submit" />
+                    <RadioButton
+                        inputId="Yes"
+                        name="complete"
+                        value={true}
+                        onChange={this.handleInputs}
+                        checked={this.state.complete === true}
+                    />
+                    <label htmlFor="Yes" className="p-radiobutton-label">Yes</label>
+                    <RadioButton
+                        inputId="Not yet"
+                        name="complete"
+                        value={false}
+                        onChange={this.handleInputs}
+                        checked={this.state.complete === false}
+                    />
+                    <label htmlFor="Not yet" className="p-radiobutton-label">Not yet</label>
+                </div>
+                <Button label="Submit" type="submit" value="Submit" className="p-button-raised p-button-success"/>
             </form>
         )
     }

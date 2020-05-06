@@ -3,29 +3,46 @@ import {connect} from 'react-redux'
 import Milestone from './Milestone.jsx'
 import {withRouter} from 'react-router-dom'
 import {ProgressBar} from 'primereact/progressbar';
-
+import {Button} from 'primereact/button';
+import {TriStateCheckbox} from 'primereact/tristatecheckbox'
+import { Card } from 'primereact/card';
+import {Progress} from 'semantic-ui-react'
 
 
 const Goal = (props) =>{
-    let arrayofMilestones
+    let arrayofMilestones;
+    let milestoneComponents;
     if(props.milestones.length > 0){
-    arrayofMilestones = props.milestones.map((singleMilestone)=>{
-        if(props.goal.id === singleMilestone.goal_id){
-            console.log(singleMilestone)
-            return <Milestone key ={singleMilestone.id} milestone={singleMilestone}/>
-        }else{
-            return null
-        }
+    arrayofMilestones = props.milestones.filter((singleMilestone)=>{
+        return props.goal.id === singleMilestone.goal_id     
+    })
+
+    milestoneComponents = arrayofMilestones.map(milestone => {
+        return <Milestone key ={milestone.id} milestone={milestone}/>
     })
 }
+
     let handleView = (e) =>{
         e.preventDefault()
         props.history.push(`/goals/${props.goal.id}`)
     }
 
     let getPercentage = () => {
-        console.log(arrayofMilestones)
-        return 90
+        let counter = 0
+        let amountCompleted = 0
+        if(arrayofMilestones){
+            counter = 100/arrayofMilestones.length 
+            if(counter > 100 || counter < 0){
+                return 0
+            }
+            arrayofMilestones.forEach(element => {
+                if(element.complete === true){
+                    amountCompleted++
+                }
+            });
+
+        }
+        return Math.round(counter * amountCompleted)
     }
 
     let handleClick = (e) =>{
@@ -67,30 +84,40 @@ const Goal = (props) =>{
     }
         return (
             <div className="Goal" >
-                <h1>{props.goal.name}</h1>
                 {window.location.href.includes("/profile")
-                ?<button onClick={handleView}>View</button>
-                :   <>
-                    <input 
+                ?
+                <Card title={props.goal.name} className="p-card-title">
+                    <Progress 
+                        percent={getPercentage()}
+                        indicating
+                    />
+                    <Button 
+                        label="View"  
+                        className="p-button-raised" 
+                        onClick={handleView}>
+                    </Button>
+                </Card>
+                :
+                <Card title={props.goal.name} className="p-card-title">
+                    <TriStateCheckbox 
                         type="checkbox"
                         name="complete"
-                        checked={props.goal.complete}
+                        value={props.goal.complete}
                         onChange={handleUpdate}
-                       
                     />
-                        <button onClick={handleClick}>Delete this goal</button>
-                    </>
-                }
-                
-                {window.location.href.includes("/profile") 
-                ? <></>
-                : arrayofMilestones
-                }
-                <ProgressBar 
-                mode="determinate"
-                value={getPercentage()}
-                >
-                </ProgressBar>
+                    <Button 
+                        label="Delete Goal" 
+                        onClick={handleClick}
+                        id="deletebtn"
+                        className="p-button-raised p-button-danger">
+                    </Button>
+                    <Progress 
+                        percent={getPercentage()}
+                        indicating
+                    />
+                    {milestoneComponents}
+                </Card>
+                }                
             </div>
         )
     

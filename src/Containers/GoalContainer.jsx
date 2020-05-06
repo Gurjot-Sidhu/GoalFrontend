@@ -4,13 +4,12 @@ import Goal from '../Components/Goal.jsx'
 
 
 const GoalContainer = (props) =>{
-        // console.log(props)
         let arrayofComponents = props.goals.map((singleGoal)=>{
         return <Goal key={singleGoal.name} goal={singleGoal} milestones={props.milestones}/>
      })
     return (
         <div className="GoalContainer">
-            <h1>Goal Container</h1>
+            <h1>Your Goals</h1>
             {arrayofComponents}
          </div>
      )

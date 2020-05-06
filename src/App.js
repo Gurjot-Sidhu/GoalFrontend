@@ -8,14 +8,22 @@ import Navbar from './Components/Navbar.jsx';
 import {Switch,Route,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import GoalPage from './Containers/GoalPage';
+import { Toolbar } from 'primereact/toolbar';
+import { Button } from 'primereact/button';
 
 class App extends React.Component{
 
 
   state={
-    login:false
+    login:false,
+    display:false
   }
 
+  handleForm = (e) =>{
+    this.setState({
+      display: !this.state.display
+    })
+  }
   componentDidMount(){
 
     fetch("http://localhost:3000/goals",{
@@ -128,7 +136,6 @@ class App extends React.Component{
   render(){
     return(
       <div className="App">
-          <h1>Welcome</h1>
           <Navbar handleLogout={this.handleLogout} login={this.state.login}/>
           <Switch>
               <Route path="/login" render={this.renderForm}/>
@@ -137,8 +144,22 @@ class App extends React.Component{
               <Route path="/profile" render={() =>{
                 if(localStorage.token){
                   return (
-                    <div>
-                      <GoalForm history={this.props.history}/>
+                    <div className="Profile">
+                      <Toolbar className="Toolbar">
+                        <div className="p-toolbar-group-left">
+                          <Button
+                            icon="pi pi-plus"
+                            label="New Goal"
+                            className="p-button-raised"
+                            iconPos="right"
+                            onClick={this.handleForm}
+                          />
+                        </div>
+                      </Toolbar>
+                      {this.state.display 
+                      ?<GoalForm history={this.props.history}/>
+                      :<></>
+                      }
                       <GoalContainer />
                     </div>
                     )}
