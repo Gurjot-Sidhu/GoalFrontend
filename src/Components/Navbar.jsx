@@ -5,9 +5,7 @@ const Navbar = (props) => {
     
     return (
         <div class ="ui secondary pointing menu">
-                <a className="item">
-                    <NavLink to="/">Home</NavLink>
-                </a>
+               
                 <a className="item">
                     <NavLink to="/profile">Profile</NavLink>
                 </a>
@@ -19,7 +17,7 @@ const Navbar = (props) => {
                     :
                     <>
                         <a className="ui item">
-                            <NavLink to="/signup">Register</NavLink>
+                            <NavLink to="/signup">Sign up</NavLink>
                         </a>
                         <a className="ui item">
                             <NavLink to="/login">Login</NavLink>

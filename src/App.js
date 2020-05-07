@@ -5,7 +5,7 @@ import GoalForm from './Components/GoalForm.jsx';
 import UserForm from './Components/UserForm.jsx'
 import Navbar from './Components/Navbar.jsx';
 
-import {Switch,Route,withRouter} from 'react-router-dom'
+import {Switch,Route,withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import GoalPage from './Containers/GoalPage';
 import { Toolbar } from 'primereact/toolbar';
@@ -160,9 +160,12 @@ class App extends React.Component{
                       ?<GoalForm history={this.props.history}/>
                       :<></>
                       }
+                      <br></br>
                       <GoalContainer />
                     </div>
-                    )}
+                    )}else{
+                      return <Redirect to="/login"/>
+                    }
                 }}/>
               
           </Switch>
