@@ -46,7 +46,7 @@ export class GoalForm extends Component {
     render() {
         return (
             <form className="GoalForm" onSubmit={this.handleSubmit}>
-            <img src="https://smartcaresoftware.com/wp-content/uploads/2019/11/SMART-goals-1536x792.jpg"/>
+            <img src="https://s3.amazonaws.com/notejoy/static_images/resources_SMART_Goals.png"/>
                 <span className="Goalname">
                     <h3 className="first">Name of Goal</h3>
                     <InputText
@@ -74,8 +74,9 @@ export class GoalForm extends Component {
                         checked={this.state.complete === false}
                     />
                     <label htmlFor="Not yet" className="p-radiobutton-label">Not yet</label>
+                    <br></br>
+                    <Button label="Submit" type="submit" value="Submit" className="p-button-raised p-button-success"/>
                 </div>
-                <Button label="Submit" type="submit" value="Submit" className="p-button-raised p-button-success"/>
             </form>
         )
     }
