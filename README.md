@@ -20,7 +20,7 @@ https://img.shields.io/badge/code%20style-standard-brightgreen
 - Rails
 
 ## Features
-I added a sign up and login feature to allow uses to track their own goals. The can also view their progress with a dynamic progressbar.
+I added a sign up and login feature to allow uses to track their own goals. The user can also view their progress with a dynamic progressbar.
 I added JWT to authenticate old accounts and create new accounts with secure logins.
  
 ## Code Example
