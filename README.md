@@ -7,9 +7,10 @@ I noticed I would use reminders on my phone as a sort of short term goals list b
 
 ## Build Status
 Build failing
+
 ## Code Style
-https://img.shields.io/badge/Code%20Style-standard-brightgreen
 Standard
+
 ## Screenshots
 
 ## Tech/framework used
