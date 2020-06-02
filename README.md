@@ -22,7 +22,7 @@ Standard
 
 ## Features
 - I added JWT to authenticate old accounts and create new accounts with secure logins.
-- Integreated a token to persist the user on page change or refresh
+- Integrated a token to persist the user on page change or refresh
 - I added a sign up and login feature to allow uses to track their own goals. 
 - The user can also view their progress with a dynamic progressbar.
 - The user can create/update/delete goals
