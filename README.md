@@ -8,8 +8,7 @@ I noticed I would use reminders on my phone as a sort of short term goals list b
 ## Build Status
 build failing
 ## Code Style
-https://img.shields.io/badge/code%20style-standard-brightgreen
-
+https://img.shields.io/badge/Code%20Style-standard-brightgreen
 ## Screenshots
 
 ## Tech/framework used
@@ -20,25 +19,32 @@ https://img.shields.io/badge/code%20style-standard-brightgreen
 - Rails
 
 ## Features
-I added a sign up and login feature to allow uses to track their own goals. The user can also view their progress with a dynamic progressbar.
-I added JWT to authenticate old accounts and create new accounts with secure logins.
- 
+- I added JWT to authenticate old accounts and create new accounts with secure logins.
+- Integreated a token to persist the user on page change or refresh
+- I added a sign up and login feature to allow uses to track their own goals. 
+- The user can also view their progress with a dynamic progressbar.
+- The user can create/update/delete goals
+- The user can create/udpate/delete milestones 
+
 ## Code Example
 Progressbar Code
+
 <img width="447" alt="code" src="https://user-images.githubusercontent.com/9657307/83551190-06aa4480-a4d6-11ea-8ea0-5ff1f5d3ceb1.png">
+
 In this snippet above, I am getting the percentage of goal completion based on the milestone completion. I start with the length of the milestones(counter).I then go through each element within the array and add 1 (amountCompleted) for each milestone that has complete:true in the database. I then mulitply both numbers and round them in the return statement to get a percentage for the progressbar component.
 
 
 ## How to use
 
 ### Clone down backend repo https://github.com/Gurjot-Sidhu/GoalsBackend
--Download and install `ruby v 2.6.1`
- -run `bundle install`
- -run `rails db:migrate`
- -run `rails db:seed`
- -run `rails s`
 
-### Then
+- Download and install `ruby v 2.6.1`
+- run `bundle install`
+- run `rails db:migrate`
+- run `rails db:seed`
+- run `rails s`
+
+### Then Clone down this repo
 - Download npm https://nodejs.org/en/
 - run `npm install`
 - run `npm start`
