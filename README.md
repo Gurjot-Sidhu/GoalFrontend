@@ -24,8 +24,7 @@ I added a sign up and login feature to allow uses to track their own goals. The 
 I added JWT to authenticate old accounts and create new accounts with secure logins.
  
 ## Code Example
-![image of code](https://github.com/Gurjot-Sidhu/GoalFrontend/blob/master/public/code.png?raw=true)
-
+<img width="447" alt="code" src="https://user-images.githubusercontent.com/9657307/83551190-06aa4480-a4d6-11ea-8ea0-5ff1f5d3ceb1.png">
 ### `npm start`
 
 Runs the app in the development mode.<br />
