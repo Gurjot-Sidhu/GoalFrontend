@@ -25,7 +25,7 @@ I added JWT to authenticate old accounts and create new accounts with secure log
  
 ## Code Example
 ![image of code]
-(https://github.com/Gurjot-Sidhu/GoalFrontend/blob/master/public/code.png)
+(https://github.com/Gurjot-Sidhu/GoalFrontend/blob/master/public/code.png?raw=true)
 
 ### `npm start`
 
