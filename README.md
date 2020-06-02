@@ -6,9 +6,10 @@ A goal setting app designed to help you plan your future
 I noticed I would use reminders on my phone as a sort of short term goals list but I knew i could make something better.  
 
 ## Build Status
-build failing
+Build failing
 ## Code Style
 https://img.shields.io/badge/Code%20Style-standard-brightgreen
+Standard
 ## Screenshots
 
 ## Tech/framework used
@@ -49,3 +50,8 @@ In this snippet above, I am getting the percentage of goal completion based on t
 - run `npm install`
 - run `npm start`
 
+## Contribute
+All contributers welcome.If you would like to contribute just ask(permission granted upon request)
+
+## License
+GNU General Public License v3.0 @ Gurjot-Sidhu
