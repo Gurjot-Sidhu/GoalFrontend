@@ -1,4 +1,5 @@
-# Goals
+# Goals [![HitCount](http://hits.dwyl.com/Gurjot-Sidhu/GoalFrontend.svg)](http://hits.dwyl.com/Gurjot-Sidhu/GoalFrontend)
+
 A goal setting app designed to help you plan your future
 
 ## Motivation
@@ -8,7 +9,6 @@ I noticed I would use reminders on my phone as a sort of short term goals list b
 build failing
 ## Code Style
 https://img.shields.io/badge/code%20style-standard-brightgreen
-[![HitCount](http://hits.dwyl.com/Gurjot-Sidhu/GoalFrontend.svg)](http://hits.dwyl.com/Gurjot-Sidhu/GoalFrontend)
 
 ## Screenshots
 
@@ -23,7 +23,8 @@ https://img.shields.io/badge/code%20style-standard-brightgreen
 I added a sign up and login feature to allow uses to track their own goals. The can also view their progress with a dynamic progressbar.
 I added JWT to authenticate old accounts and create new accounts with secure logins.
  
-
+## Code Example
+(https://)
 
 ### `npm start`
 
