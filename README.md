@@ -24,27 +24,22 @@ I added a sign up and login feature to allow uses to track their own goals. The 
 I added JWT to authenticate old accounts and create new accounts with secure logins.
  
 ## Code Example
+Progressbar Code
 <img width="447" alt="code" src="https://user-images.githubusercontent.com/9657307/83551190-06aa4480-a4d6-11ea-8ea0-5ff1f5d3ceb1.png">
-### `npm start`
+In this snippet above, I am getting the percentage of goal completion based on the milestone completion. I start with the length of the milestones(counter).I then go through each element within the array and add 1 (amountCompleted) for each milestone that has complete:true in the database. I then mulitply both numbers and round them in the return statement to get a percentage for the progressbar component.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to use
 
-### `npm test`
+### Clone down backend repo https://github.com/Gurjot-Sidhu/GoalsBackend
+-Download and install `ruby v 2.6.1`
+ -run `bundle install`
+ -run `rails db:migrate`
+ -run `rails db:seed`
+ -run `rails s`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Then
+- Download npm https://nodejs.org/en/
+- run `npm install`
+- run `npm start`
 
