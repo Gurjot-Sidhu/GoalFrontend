@@ -11,9 +11,9 @@ Build failing
 ## Code Style
 Standard
 
+## Demo 
+[![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
 ## Screenshots
-
-<div style='position:relative; padding-bottom:calc(62.50% + 44px)'><iframe src='https://gfycat.com/ifr/BestSmoothGreatargus' frameborder='0' scrolling='no' width='100%' height='100%' style='position:absolute;top:0;left:0;' allowfullscreen></iframe></div>
 
 ## Tech/framework used
 **Built with**
