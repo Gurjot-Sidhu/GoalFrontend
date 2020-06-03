@@ -13,7 +13,6 @@ Standard
 
 ## Demo 
 [![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
-## Screenshots
 
 ## Tech/framework used
 **Built with**
