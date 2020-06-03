@@ -11,7 +11,7 @@ Build failing
 ## Code Style
 Standard
 
-## Demo 
+## Demo Video
 [![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
 
 ## Tech/framework used
