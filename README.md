@@ -44,7 +44,7 @@ Progressbar Code
 In this snippet above, I am getting the percentage of goal completion based on the milestone completion. I start with the length of the milestones(counter).I then go through each element within the array and add 1 (amountCompleted) for each milestone that has complete:true in the database. I then mulitply both numbers and round them in the return statement to get a percentage for the progressbar component.
 
 
-## How to use
+## Installation
 
 ### Clone down backend repo https://github.com/Gurjot-Sidhu/GoalsBackend
 
@@ -59,8 +59,18 @@ In this snippet above, I am getting the percentage of goal completion based on t
 - run `npm install`
 - run `npm start`
 
+## API Reference 
+TBA. Project still in development
+
+## Tests
+TBA. Project still in development 
+
 ## Contribute
 All contributers welcome.If you would like to contribute just ask(permission granted upon request)
+
+## Credits
+- Nicky Dover - helped me solve issues and design flaws I encountered while building this project https://github.com/NickyEXE 
+- Randy Herasme - helped me adjust backed api functionality for my frontend and so much more https://github.com/randyher
 
 ## License
 GNU General Public License v3.0 @ Gurjot-Sidhu
