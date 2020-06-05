@@ -9,7 +9,7 @@ I noticed I would use reminders on my phone as a sort of short term goals list b
 [![Build Status](https://travis-ci.com/Gurjot-Sidhu/GoalFrontend.svg?branch=master)](https://travis-ci.com/Gurjot-Sidhu/GoalFrontend)
 
 ## Code Style
-https://img.shields.io/badge/Code%20Style-Standard-brightgreen
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 ## Demo Video
 [![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
