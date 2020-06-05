@@ -6,10 +6,10 @@ A goal setting app designed to help you plan your future
 I noticed I would use reminders on my phone as a sort of short term goals list but I knew i could make something better.  
 
 ## Build Status
-Build failing
+[![Build Status](https://travis-ci.com/Gurjot-Sidhu/GoalFrontend.svg?branch=master)](https://travis-ci.com/Gurjot-Sidhu/GoalFrontend)
 
 ## Code Style
-Standard
+https://img.shields.io/badge/Code%20Style-Standard-brightgreen
 
 ## Demo Video
 [![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
