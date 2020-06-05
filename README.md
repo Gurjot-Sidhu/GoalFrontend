@@ -14,6 +14,13 @@ I noticed I would use reminders on my phone as a sort of short term goals list b
 ## Demo Video
 [![Demo](http://img.youtube.com/vi/8gQHg3Ap_vc/0.jpg)](http://www.youtube.com/watch?v=8gQHg3Ap_vc "Smart Goal Demo")
 
+## Screenshots
+<img width="640" height="480" alt="Screen Shot 2020-06-05 at 3 23 42 PM" src="https://user-images.githubusercontent.com/9657307/83915106-95ba9500-a740-11ea-95d6-dcbdfe47114f.png">
+
+<img width="640" height="480" alt="Screen Shot 2020-06-05 at 3 20 10 PM" src="https://user-images.githubusercontent.com/9657307/83915117-9a7f4900-a740-11ea-9da1-3f168e31d2e1.png">
+
+<img width="640" height="480" alt="Screen Shot 2020-06-05 at 3 17 14 PM" src="https://user-images.githubusercontent.com/9657307/83915123-9e12d000-a740-11ea-937f-dc892a337804.png">
+
 ## Tech/framework used
 **Built with**
 - Javascript
