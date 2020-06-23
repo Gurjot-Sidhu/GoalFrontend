@@ -2,7 +2,7 @@
 
 A goal setting app designed to help you plan your future
 
-## Motivation
+## Motivations
 I noticed I would use reminders on my phone as a sort of short term goals list but I knew i could make something better.  
 
 ## Build Status
