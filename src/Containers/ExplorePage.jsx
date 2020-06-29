@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Goal from '../Components/Goal.jsx'
 
 const ExplorePage = (props) => {
   const arrayofGoals = props.goals.map((singleGoal) => {

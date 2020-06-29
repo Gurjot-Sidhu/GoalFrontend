@@ -79,7 +79,9 @@ const Goal = (props) => {
         }
       })
   }
+  
   return (
+  
     <div className='Goal'>
       {window.location.href.includes('/profile')
         ? <Card title={props.goal.name} className='p-card-title'>

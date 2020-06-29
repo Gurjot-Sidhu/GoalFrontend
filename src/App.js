@@ -4,6 +4,7 @@ import GoalContainer from '../src/Containers/GoalContainer.jsx'
 import GoalForm from './Components/GoalForm.jsx';
 import UserForm from './Components/UserForm.jsx'
 import Navbar from './Components/Navbar.jsx';
+import ExplorePage from './Containers/ExplorePage.jsx'
 
 import {Switch,Route,withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -137,6 +138,7 @@ class App extends React.Component{
     return(
       <div className="App">
           <Navbar handleLogout={this.handleLogout} login={this.state.login}/>
+          <ExplorePage></ExplorePage>
           <Switch>
               <Route path="/login" render={this.renderForm}/>
               <Route path="/signup" render={this.renderForm}/>
