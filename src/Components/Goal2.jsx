@@ -8,8 +8,19 @@ const Goal2 = (props) =>{
 
     const handleAdd = (e) =>{
         e.preventDefault()
-        console.log("hello")
+        
+        fetch("http://localhost:3000/goals",{
+            method:"POST",
+            headers:{
+                    'Authorization': `bearer ${localStorage.token}`,
+                    'Content-Type': 'Application/JSON'
+            },
+            body: JSON.stringify()
+        })
+        .then(r => r.json())
+        .then(console.log)
     }
+
 
     return (
         <div className='Goal'>
