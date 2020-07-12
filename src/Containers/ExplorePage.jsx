@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Goal from '../Components/Goal.jsx'
+import Goal2 from '../Components/Goal2.jsx'
 
 const ExplorePage = (props) => {
   const arrayofGoals = props.goals.map((singleGoal) => {
-    return <Goal key={singleGoal.id} goal={singleGoal} milestones={props.milestones} />
+    return <Goal2 key={singleGoal.id} goal={singleGoal} milestones={props.milestones} />
   })
   return (
     <div className='ExplorePage'>
