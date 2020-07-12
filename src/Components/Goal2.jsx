@@ -1,7 +1,8 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Button } from 'primereact/button'
+import { Card } from 'primereact/card'
 
 const Goal2 = (props) =>{
 
@@ -12,12 +13,13 @@ const Goal2 = (props) =>{
 
     return (
         <div className='Goal'>
+            <Card title ={props.goal.name} className='p-card-title'>
             <Button
                 label='Add'
                 className='p-button-raised'
                 onClick={handleAdd}
             />
-
+            </Card>
         </div>
     )
 }
