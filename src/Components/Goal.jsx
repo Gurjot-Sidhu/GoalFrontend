@@ -79,7 +79,6 @@ const Goal = (props) => {
         }
       })
   }
-  console.log(props.goal)
   return (
   
     <div className='Goal'>
