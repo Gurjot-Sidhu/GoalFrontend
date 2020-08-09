@@ -97,6 +97,13 @@ const goalReducer = (state = goalInitialState, action) => {
         ...state,
         goals: goalsArray
       }
+    case 'ADD_EXPLORE_GOAL':
+      const newGoal = action.payload
+      const copyGoals = [...state.goals, newGoal]
+      return{
+        ...state,
+        goals: newGoal
+      }
     case 'REMOVE_GOAL':
       const goalName = action.payload
       const filteredGoals = state.goals.filter((goal) => {
