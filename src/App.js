@@ -5,7 +5,6 @@ import GoalForm from './Components/GoalForm.jsx';
 import UserForm from './Components/UserForm.jsx'
 import Navbar from './Components/Navbar.jsx';
 import ExplorePage from './Containers/ExplorePage.jsx'
-
 import {Switch,Route,withRouter, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import GoalPage from './Containers/GoalPage';
