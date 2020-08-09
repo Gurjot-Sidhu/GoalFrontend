@@ -21,7 +21,6 @@ const Goal2 = (props) =>{
         .then(console.log)
     }
 
-    console.log(props.goal)
     return (
         <div className='Goal'>
             <Card title ={props.goal.name} className='p-card-title'>
