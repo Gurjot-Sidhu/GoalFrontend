@@ -15,13 +15,13 @@ const Goal2 = (props) =>{
                     'Authorization': `bearer ${localStorage.token}`,
                     'Content-Type': 'Application/JSON'
             },
-            body: JSON.stringify()
+            body: JSON.stringify(props.goal.name)
         })
         .then(r => r.json())
         .then(console.log)
     }
 
-
+    console.log(props.goal)
     return (
         <div className='Goal'>
             <Card title ={props.goal.name} className='p-card-title'>
