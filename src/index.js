@@ -98,11 +98,11 @@ const goalReducer = (state = goalInitialState, action) => {
         goals: goalsArray
       }
     case 'ADD_EXPLORE_GOAL':
-      const newGoal = action.payload
-      const copyGoals = [...state.goals, newGoal]
+      const nGoal = action.payload
+      const coGoals = [...state.goals, nGoal]
       return{
         ...state,
-        goals: newGoal
+        goals: nGoal
       }
     case 'REMOVE_GOAL':
       const goalName = action.payload
