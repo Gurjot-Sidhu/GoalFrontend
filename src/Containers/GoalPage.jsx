@@ -6,7 +6,7 @@ import {Toolbar} from 'primereact/toolbar'
 import {Button} from 'primereact/button'
 
 export class GoalPage extends Component{
-
+    // used a class components because of state issue
    state ={
        display:false
     }
