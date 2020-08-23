@@ -7,6 +7,7 @@ const ExplorePage = (props) => {
   const arrayofGoals = props.goals.map((singleGoal) => {
     return <Goal2 key={singleGoal.id} goal={singleGoal} milestones={props.milestones} />
   })
+  // return the array of components within the explore page
   return (
     <div className='ExplorePage'>
       <h1>ExplorePage</h1>
