@@ -26,7 +26,6 @@ export class UpdateGoalForm extends Component {
         })
             .then(r => r.json())
             .then(console.log)
-        // this.props.renameOneGoal(this.state)
     }
 
     render() {
