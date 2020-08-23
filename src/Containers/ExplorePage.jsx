@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import Goal2 from '../Components/Goal2.jsx'
 
 const ExplorePage = (props) => {
+  // take in props from index page
   const arrayofGoals = props.goals.map((singleGoal) => {
     return <Goal2 key={singleGoal.id} goal={singleGoal} milestones={props.milestones} />
   })
+  // return the array of components within the explore page
   return (
     <div className='ExplorePage'>
       <h1>ExplorePage</h1>

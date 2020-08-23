@@ -6,7 +6,7 @@ import {Toolbar} from 'primereact/toolbar'
 import {Button} from 'primereact/button'
 
 export class GoalPage extends Component{
-
+    // used a class components because of state issue
    state ={
        display:false
     }
@@ -23,7 +23,8 @@ export class GoalPage extends Component{
         this.props.history.push("/profile")
     }
 
-
+    //filter through all the goals and only show the goal whose id matches the url
+    //then filter through all the milestones and find the goal whose goalid matches the one we just got from the url
     render(){
         let foundMilestones
         let foundGoal = "cheese"
